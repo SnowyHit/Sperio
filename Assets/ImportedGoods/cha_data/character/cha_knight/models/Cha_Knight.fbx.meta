@@ -1,0 +1,628 @@
+fileFormatVersion: 2
+guid: df0777a2e75ec7048b28e7c394efbd53
+ModelImporter:
+  serializedVersion: 21202
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Bone
+  - first:
+      1: 100002
+    second: //RootNode
+  - first:
+      1: 100004
+    second: Knight
+  - first:
+      1: 100006
+    second: Locator_Leg_L
+  - first:
+      1: 100008
+    second: Locator_Leg_R
+  - first:
+      1: 100010
+    second: Skeleton_Arm_L
+  - first:
+      1: 100012
+    second: Skeleton_Arm_R
+  - first:
+      1: 100014
+    second: Skeleton_Foot_L
+  - first:
+      1: 100016
+    second: Skeleton_Foot_R
+  - first:
+      1: 100018
+    second: Skeleton_ForeArm_L
+  - first:
+      1: 100020
+    second: Skeleton_ForeArm_R
+  - first:
+      1: 100022
+    second: Skeleton_Hand_L
+  - first:
+      1: 100024
+    second: Skeleton_Hand_R
+  - first:
+      1: 100026
+    second: Skeleton_Head
+  - first:
+      1: 100028
+    second: Skeleton_Leg_L
+  - first:
+      1: 100030
+    second: Skeleton_Leg_R
+  - first:
+      1: 100032
+    second: Skeleton_Root
+  - first:
+      1: 100034
+    second: Skeleton_Spine01
+  - first:
+      1: 100036
+    second: Skeleton_Spine02
+  - first:
+      1: 100038
+    second: Skeleton_UpperLeg_L
+  - first:
+      1: 100040
+    second: Skeleton_UpperLeg_R
+  - first:
+      1: 100042
+    second: Sword02
+  - first:
+      1: 100044
+    second: Texture Group
+  - first:
+      1: 100046
+    second: FullBodyIK
+  - first:
+      1: 100048
+    second: FullBodyIK (2)
+  - first:
+      1: 100050
+    second: Goal
+  - first:
+      1: 100052
+    second: Goal (2)
+  - first:
+      1: 100054
+    second: Mesh
+  - first:
+      1: 100056
+    second: Root
+  - first:
+      1: 100058
+    second: UpVector_Leg_L
+  - first:
+      1: 100060
+    second: UpVector_Leg_R
+  - first:
+      1: 100062
+    second: Locator
+  - first:
+      1: 100064
+    second: Group Locator
+  - first:
+      1: 100066
+    second: Shadow
+  - first:
+      4: 400000
+    second: Bone
+  - first:
+      4: 400002
+    second: //RootNode
+  - first:
+      4: 400004
+    second: Knight
+  - first:
+      4: 400006
+    second: Locator_Leg_L
+  - first:
+      4: 400008
+    second: Locator_Leg_R
+  - first:
+      4: 400010
+    second: Skeleton_Arm_L
+  - first:
+      4: 400012
+    second: Skeleton_Arm_R
+  - first:
+      4: 400014
+    second: Skeleton_Foot_L
+  - first:
+      4: 400016
+    second: Skeleton_Foot_R
+  - first:
+      4: 400018
+    second: Skeleton_ForeArm_L
+  - first:
+      4: 400020
+    second: Skeleton_ForeArm_R
+  - first:
+      4: 400022
+    second: Skeleton_Hand_L
+  - first:
+      4: 400024
+    second: Skeleton_Hand_R
+  - first:
+      4: 400026
+    second: Skeleton_Head
+  - first:
+      4: 400028
+    second: Skeleton_Leg_L
+  - first:
+      4: 400030
+    second: Skeleton_Leg_R
+  - first:
+      4: 400032
+    second: Skeleton_Root
+  - first:
+      4: 400034
+    second: Skeleton_Spine01
+  - first:
+      4: 400036
+    second: Skeleton_Spine02
+  - first:
+      4: 400038
+    second: Skeleton_UpperLeg_L
+  - first:
+      4: 400040
+    second: Skeleton_UpperLeg_R
+  - first:
+      4: 400042
+    second: Sword02
+  - first:
+      4: 400044
+    second: Texture Group
+  - first:
+      4: 400046
+    second: FullBodyIK
+  - first:
+      4: 400048
+    second: FullBodyIK (2)
+  - first:
+      4: 400050
+    second: Goal
+  - first:
+      4: 400052
+    second: Goal (2)
+  - first:
+      4: 400054
+    second: Mesh
+  - first:
+      4: 400056
+    second: Root
+  - first:
+      4: 400058
+    second: UpVector_Leg_L
+  - first:
+      4: 400060
+    second: UpVector_Leg_R
+  - first:
+      4: 400062
+    second: Locator
+  - first:
+      4: 400064
+    second: Group Locator
+  - first:
+      4: 400066
+    second: Shadow
+  - first:
+      23: 2300000
+    second: Shadow
+  - first:
+      33: 3300000
+    second: Shadow
+  - first:
+      43: 4300000
+    second: Knight
+  - first:
+      43: 4300002
+    second: Sword02
+  - first:
+      43: 4300004
+    second: Shadow
+  - first:
+      74: 7400000
+    second: Take 001
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      111: 11100000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: Knight
+  - first:
+      137: 13700002
+    second: Sword02
+  externalObjects: {}
+  materials:
+    materialImportMode: 1
+    materialName: 2
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    rigImportErrors: "Invalid Avatar Rig Configuration. Missing or invalid transform:\n\tRequired
+      human bone 'RightFoot' not found\n"
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.01
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    nodeNameCollisionStrategy: 0
+    fileIdsGeneration: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 0
+  humanDescription:
+    serializedVersion: 3
+    human:
+    - boneName: Skeleton_Root
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Skeleton_UpperLeg_L
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Skeleton_UpperLeg_R
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Skeleton_Leg_L
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Skeleton_Leg_R
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Skeleton_Foot_L
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Skeleton_Spine01
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Skeleton_Spine02
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Skeleton_Head
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Skeleton_Arm_L
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Skeleton_Arm_R
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Skeleton_ForeArm_L
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Skeleton_ForeArm_R
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Skeleton_Hand_L
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Skeleton_Hand_R
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Skeleton_Foot_R
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: Cha_Knight(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Group Locator
+      parentName: Cha_Knight(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Knight
+      parentName: Group Locator
+      position: {x: -0, y: 0.016, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 5, y: 5, z: 5}
+    - name: Locator
+      parentName: Group Locator
+      position: {x: -0, y: 0.47609118, z: 0.9805315}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Root
+      parentName: Group Locator
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Goal
+      parentName: Root
+      position: {x: -0.099999994, y: -0.0020000238, z: 0.0059999996}
+      rotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Goal (2)
+      parentName: Root
+      position: {x: 0.099999994, y: -0.0020000238, z: 0.0059999996}
+      rotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Skeleton_Root
+      parentName: Root
+      position: {x: -0, y: 0.201, z: 0.019}
+      rotation: {x: 0.5012804, y: -0.49871635, z: -0.5012804, w: -0.49871635}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Locator_Leg_L
+      parentName: Skeleton_Root
+      position: {x: 0.013117775, y: 0.099999994, z: -0.022933032}
+      rotation: {x: 0.70710456, y: -0.70710444, z: 0.0018130096, w: -0.0018130194}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Skeleton_UpperLeg_L
+      parentName: Locator_Leg_L
+      position: {x: -0, y: -1.3877788e-17, z: -2.7755576e-17}
+      rotation: {x: -0.03140002, y: 7.8690526e-10, z: 5.172292e-11, w: 0.9995069}
+      scale: {x: 1, y: 1, z: 1}
+    - name: FullBodyIK (2)
+      parentName: Skeleton_UpperLeg_L
+      position: {x: 1.3877788e-17, y: -6.938894e-18, z: -2.7755576e-17}
+      rotation: {x: 0.031390287, y: 0.024964286, z: 0.0007842673, w: 0.9991951}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Skeleton_Leg_L
+      parentName: Skeleton_UpperLeg_L
+      position: {x: -2.7755576e-17, y: -1.9297283e-10, z: 0.079657085}
+      rotation: {x: -0.000012444887, y: -0.056230642, z: 0.9984178, w: -0.00022097772}
+      scale: {x: 1, y: 1.0000001, z: 1}
+    - name: Skeleton_Foot_L
+      parentName: Skeleton_Leg_L
+      position: {x: -2.8732917e-11, y: 1.5799294e-10, z: 0.10062429}
+      rotation: {x: 0.70877165, y: 0.70500016, z: 0.017534314, w: -0.017612493}
+      scale: {x: 0.9999997, y: 1.0000004, z: 1.0000002}
+    - name: Locator_Leg_R
+      parentName: Skeleton_Root
+      position: {x: 0.013117775, y: -0.099999994, z: -0.022933032}
+      rotation: {x: 0.70710456, y: -0.70710444, z: 0.0018130861, w: -0.0018130959}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Skeleton_UpperLeg_R
+      parentName: Locator_Leg_R
+      position: {x: -0, y: -1.3877788e-17, z: -5.551115e-17}
+      rotation: {x: -0.028581027, y: 0.0000000139134935, z: -3.9992715e-10, w: 0.99959147}
+      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+    - name: FullBodyIK
+      parentName: Skeleton_UpperLeg_R
+      position: {x: 2.7755576e-17, y: 1.0408341e-17, z: 0}
+      rotation: {x: 0.0796925, y: 0.024897104, z: 0.0019910687, w: 0.9965066}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Skeleton_Leg_R
+      parentName: Skeleton_UpperLeg_R
+      position: {x: -0.0000000050726854, y: -0.00005882966, z: 0.07965704}
+      rotation: {x: -0.000013148577, y: -0.05171406, z: 0.99866194, w: -0.00022093722}
+      scale: {x: 1, y: 1.0000004, z: 1.0000004}
+    - name: Skeleton_Foot_R
+      parentName: Skeleton_Leg_R
+      position: {x: -0.000034904955, y: -0.00015248841, z: 0.10035643}
+      rotation: {x: 0.70879173, y: 0.7050245, z: 0.016547488, w: -0.016761191}
+      scale: {x: 0.9999998, y: 0.9999989, z: 1.0000008}
+    - name: Skeleton_Spine01
+      parentName: Skeleton_Root
+      position: {x: -0, y: -8.271806e-25, z: 0.097501285}
+      rotation: {x: -2.1435617e-16, y: 0.0054352107, z: -3.438459e-16, w: 0.9999852}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Skeleton_Spine02
+      parentName: Skeleton_Spine01
+      position: {x: -0.000499936, y: -4.36481e-17, z: 0.0625}
+      rotation: {x: 6.4925684e-16, y: 0.07065021, z: 2.5237861e-17, w: 0.99750113}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Skeleton_Arm_L
+      parentName: Skeleton_Spine02
+      position: {x: 0.009311987, y: 0.09150001, z: 0.05615412}
+      rotation: {x: -0.05840258, y: 0.69819784, z: 0.7115667, w: 0.052742653}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Skeleton_ForeArm_L
+      parentName: Skeleton_Arm_L
+      position: {x: -2.1684043e-19, y: 5.551115e-17, z: 0.07701622}
+      rotation: {x: 0.009738673, y: -0.0032465004, z: -0.00003177359, w: 0.9999473}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Skeleton_Hand_L
+      parentName: Skeleton_ForeArm_L
+      position: {x: -1.0842022e-19, y: 5.551115e-17, z: 0.066}
+      rotation: {x: -0.00000008433785, y: 0.7071068, z: 0.70710677, w: 0.00000008433785}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Skeleton_Arm_R
+      parentName: Skeleton_Spine02
+      position: {x: 0.009312023, y: -0.09149999, z: 0.056154132}
+      rotation: {x: -0.058490723, y: -0.69819045, z: 0.71156, w: -0.052832756}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Skeleton_ForeArm_R
+      parentName: Skeleton_Arm_R
+      position: {x: 7.155734e-18, y: 0, z: 0.07701622}
+      rotation: {x: -0.009739083, y: -0.0032452687, z: -0.00009469016, w: 0.9999473}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Skeleton_Hand_R
+      parentName: Skeleton_ForeArm_R
+      position: {x: 5.3125906e-18, y: -1.6653345e-16, z: 0.066}
+      rotation: {x: -0.000000088890516, y: 0.7071068, z: -0.70710677, w: -0.000000088890516}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Skeleton_Head
+      parentName: Skeleton_Spine02
+      position: {x: 0.0009876356, y: 1.4055395e-17, z: 0.1277342}
+      rotation: {x: 0.5403035, y: -0.54030347, z: -0.4561492, w: 0.45614928}
+      scale: {x: 1, y: 1, z: 1}
+    - name: UpVector_Leg_L
+      parentName: Root
+      position: {x: -0.099999994, y: 0.098, z: 0.144}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: UpVector_Leg_R
+      parentName: Root
+      position: {x: 0.099999994, y: 0.098, z: 0.144}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Shadow
+      parentName: Group Locator
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Sword02
+      parentName: Group Locator
+      position: {x: 0.26, y: 0.39499998, z: -0.00000001983652}
+      rotation: {x: 0.7071068, y: 0.000000015251777, z: 0.000000015251777, w: 0.7071067}
+      scale: {x: 5, y: 5, z: 5}
+    - name: Texture Group
+      parentName: Cha_Knight(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 0.01
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 3
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
