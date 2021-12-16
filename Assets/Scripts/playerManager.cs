@@ -5,13 +5,27 @@ using DG.Tweening;
 
 public class playerManager : MonoBehaviour
 {
+    // TODO : Make A persistance Datamanager , log in screen and sace player data ( owned skills and owned skins ) there.
+
+    //get a Skill class here
+
+    //get a player prefab here for skin
+
     Rigidbody rb;
     Animator anim;
     VariableJoystick varJoystick;
     public float playerSpeed;
     GameObject cameraGO;
+    public GameObject Projectile;
+    bool canShoot = true;
+    public float SkillReloadTime;
+    public float SkillPrefab;
     private void Start()
     {
+        // Set Skill Prefab And Skill Reload Time here 
+
+        // Set Player Skin here
+
         cameraGO = Camera.main.gameObject;
         varJoystick = GameObject.FindObjectOfType<VariableJoystick>();
         rb = GetComponent<Rigidbody>();
@@ -20,16 +34,6 @@ public class playerManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float distToCamera = Vector3.Distance(cameraGO.transform.position, transform.position);
-        Vector3 dirToCamera = cameraGO.transform.position - transform.position;
-
-        RaycastHit[] hits;
-        hits = Physics.RaycastAll(cameraGO.transform.position, dirToCamera, distToCamera);
-        foreach (var item in hits)
-        {
-            item.transform.GetComponent<MeshRenderer>().material.DOFade(50 , 0.1f);
-            Debug.Log(item.transform.gameObject.name);
-        }
         if (varJoystick.Horizontal != 0 || varJoystick.Vertical != 0)
         {
             Vector3 direction = new Vector3(varJoystick.Horizontal * playerSpeed , 0f, varJoystick.Vertical * playerSpeed);
@@ -43,7 +47,31 @@ public class playerManager : MonoBehaviour
         {
             anim.SetFloat("Forward", Mathf.Clamp01(rb.velocity.magnitude));
         }
+
+        
+
     }
 
+    public void Shoot()
+    {
+        if (canShoot)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                StartCoroutine(Shooting());
+            }
+        }
+    }
+
+    IEnumerator Shooting()
+    {
+        canShoot = false;
+        Debug.Log("Shooting");
+        yield return new WaitForSeconds(SkillReloadTime);
+        canShoot = true;
+    }
+
+
+    
     
 }

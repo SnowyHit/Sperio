@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class VisibilityObserver : MonoBehaviour
 {
-    public Material baseMaterial;
+    public List<Material> baseMaterial;
     public Material fadeMaterial;
+    int objectNumber = -1 ;
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag != "Player")
         {
+            objectNumber += 1;
             Debug.Log(other.name);
-            baseMaterial = other.GetComponent<MeshRenderer>().material;
+            baseMaterial.Add(other.GetComponent<MeshRenderer>().material);
             other.GetComponent<MeshRenderer>().material = fadeMaterial;
         }
     }
@@ -21,7 +23,10 @@ public class VisibilityObserver : MonoBehaviour
         if (other.gameObject.tag != "Player")
         {
             Debug.Log(other.name);
-            other.GetComponent<MeshRenderer>().material = baseMaterial;
+            other.GetComponent<MeshRenderer>().material = baseMaterial[objectNumber];
+            baseMaterial.Remove(baseMaterial[objectNumber]);
+            objectNumber -= 1;
         }
     }
+
 }
