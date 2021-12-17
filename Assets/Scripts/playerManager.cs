@@ -10,16 +10,14 @@ public class playerManager : MonoBehaviour
     //get a Skill class here
 
     //get a player prefab here for skin
-
+    public Skill PlayerSkill;
     Rigidbody rb;
     Animator anim;
     VariableJoystick varJoystick;
     public float playerSpeed;
     GameObject cameraGO;
-    public GameObject Projectile;
+    public GameObject projectileRoot;
     bool canShoot = true;
-    public float SkillReloadTime;
-    public float SkillPrefab;
     private void Start()
     {
         // Set Skill Prefab And Skill Reload Time here 
@@ -48,8 +46,6 @@ public class playerManager : MonoBehaviour
             anim.SetFloat("Forward", Mathf.Clamp01(rb.velocity.magnitude));
         }
 
-        
-
     }
 
     public void Shoot()
@@ -63,15 +59,35 @@ public class playerManager : MonoBehaviour
         }
     }
 
+    public void SpellAttackAnimation()
+    {
+        anim.CrossFade("SpellAttack" , 0.1f);
+    }
     IEnumerator Shooting()
     {
+
+
         canShoot = false;
         Debug.Log("Shooting");
-        yield return new WaitForSeconds(SkillReloadTime);
+        SpellAttackAnimation();
+        GameObject projectile = Instantiate(projectileRoot , transform.position , Quaternion.Euler(0,0,0));
+        projectile.GetComponent<ProjectileObserver>().SplashEffect = PlayerSkill.SplashEffect;
+        projectile.GetComponent<ProjectileObserver>().SplashScale = PlayerSkill.SkillRootScale;
+        projectile.transform.DOScale(PlayerSkill.SkillRootScale , 0.01f);
+        GameObject projectileSkin = Instantiate(PlayerSkill.SkillPrefab , projectile.transform.position , Quaternion.Euler(0,0,0) , projectile.transform);
+        projectile.transform.DOMove(transform.position + transform.forward * 10 , 1f);
+        Destroy(projectile, 1.2f);
+        yield return new WaitForSeconds(PlayerSkill.SkillReloadTime);
         canShoot = true;
+
+        yield return new WaitForSeconds(0.8f);
+        if (projectile != null)
+        {
+            GameObject projectileSplash = Instantiate(PlayerSkill.SplashEffect, projectile.transform.position, Quaternion.Euler(0, 0, 0));
+            projectileSplash.transform.DOScale(PlayerSkill.SkillRootScale , 0.01f);
+            Destroy(projectileSplash, 0.4f);
+            
+        }
     }
 
-
-    
-    
 }
