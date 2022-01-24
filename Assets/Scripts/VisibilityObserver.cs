@@ -9,7 +9,7 @@ public class VisibilityObserver : MonoBehaviour
     int objectNumber = -1 ;
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag != "Player")
+        if (other.gameObject.tag == "Obstacle")
         {
             objectNumber += 1;
             Debug.Log(other.name);
@@ -20,7 +20,7 @@ public class VisibilityObserver : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag != "Player")
+        if (other.gameObject.tag == "Obstacle")
         {
             Debug.Log(other.name);
             other.GetComponent<MeshRenderer>().material = baseMaterial[objectNumber];

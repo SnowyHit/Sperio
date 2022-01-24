@@ -50,9 +50,10 @@ public class playerManager : MonoBehaviour
 
     public void Shoot()
     {
+        Debug.Log(Input.GetTouch(0).tapCount > 0);
         if (canShoot)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetTouch(0).tapCount > 0 )
             {
                 StartCoroutine(Shooting());
             }
