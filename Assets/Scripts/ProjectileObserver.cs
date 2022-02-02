@@ -9,7 +9,7 @@ public class ProjectileObserver : MonoBehaviour
     public float SplashScale;
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag != "Player")
+        if(other.tag != "Player" && other.tag!= "Missile")
         {
             Destroy(gameObject);
             DOTween.Kill(gameObject);

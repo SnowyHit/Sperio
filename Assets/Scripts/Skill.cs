@@ -9,4 +9,6 @@ public class Skill : ScriptableObject
     public GameObject SplashEffect;
     public float SkillReloadTime;
     public float SkillRootScale;
+    public float Damage;
+    public ShootingStyle SkillShootingStyle;
 }

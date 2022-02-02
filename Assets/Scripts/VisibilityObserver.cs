@@ -12,7 +12,6 @@ public class VisibilityObserver : MonoBehaviour
         if (other.gameObject.tag == "Obstacle")
         {
             objectNumber += 1;
-            Debug.Log(other.name);
             baseMaterial.Add(other.GetComponent<MeshRenderer>().material);
             other.GetComponent<MeshRenderer>().material = fadeMaterial;
         }
@@ -22,7 +21,6 @@ public class VisibilityObserver : MonoBehaviour
     {
         if (other.gameObject.tag == "Obstacle")
         {
-            Debug.Log(other.name);
             other.GetComponent<MeshRenderer>().material = baseMaterial[objectNumber];
             baseMaterial.Remove(baseMaterial[objectNumber]);
             objectNumber -= 1;
