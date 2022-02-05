@@ -85,7 +85,6 @@ public class playerManager : MonoBehaviour
     IEnumerator ShootStraight()
     {
         canShoot = false;
-        Debug.Log(ShootMiddle.transform.position);
         GameObject projectile = Instantiate(projectileRoot , ShootMiddle.transform.position , Quaternion.Euler(0,0,0));
         projectile.GetComponent<ProjectileObserver>().SplashEffect = PlayerSkill.SplashEffect;
         projectile.GetComponent<ProjectileObserver>().SplashScale = PlayerSkill.SkillRootScale;
@@ -283,5 +282,4 @@ public class playerManager : MonoBehaviour
             Destroy(projectileSplash3, 0.4f);
         }
     }
-
 }
