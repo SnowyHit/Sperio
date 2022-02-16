@@ -10,5 +10,4 @@ public class Skill : ScriptableObject
     public float SkillReloadTime;
     public float SkillRootScale;
     public float Damage;
-    public ShootingStyle SkillShootingStyle;
 }

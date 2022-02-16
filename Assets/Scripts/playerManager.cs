@@ -4,7 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 
 public enum ShootingStyle { Straight, Triangle, Stream2, Stream3, Wave }
-public class playerManager : MonoBehaviour
+public class PlayerManager : MonoBehaviour
 {
     // TODO : Make A persistance Datamanager , log in screen and sace player data ( owned skills and owned skins ) there.
 
@@ -15,7 +15,9 @@ public class playerManager : MonoBehaviour
     Rigidbody rb;
     Animator anim;
     VariableJoystick varJoystick;
-    public float playerSpeed;
+    public float PlayerSpeed;
+    public float BaseSpeed;
+    public float ProjectileRange;
     GameObject cameraGO;
     public GameObject projectileRoot;
     public GameObject ShootRight;
@@ -24,15 +26,17 @@ public class playerManager : MonoBehaviour
     bool canShoot = true;
     bool shotRight = true;
     bool isDead = false;
+    public bool ShootLock = false;
+    public bool MovementLock = false;
     public ShootingStyle PlayerShootingStyle;
-    private int waveShootNumber; 
+    private int waveShootNumber;
+    public List<GameObject> trails = new List<GameObject>();
 
     private void Start()
     {
         // Set Skill Prefab And Skill Reload Time here 
 
         // Set Player Skin here
-
         cameraGO = Camera.main.gameObject;
         varJoystick = GameObject.FindObjectOfType<VariableJoystick>();
         rb = GetComponent<Rigidbody>();
@@ -43,20 +47,33 @@ public class playerManager : MonoBehaviour
     {
         if(!isDead)
         {
-            Shoot();
-
-            if (varJoystick.Horizontal != 0 || varJoystick.Vertical != 0)
+            if(!ShootLock)
             {
-                Vector3 direction = new Vector3(varJoystick.Horizontal * playerSpeed, 0f, varJoystick.Vertical * playerSpeed);
-                float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-                transform.DORotate(new Vector3(0f, targetAngle, 0f), 0.1f);
-                float forward = Mathf.Clamp01(direction.magnitude);
-                anim.SetFloat("Forward", forward);
-                rb.velocity = new Vector3(direction.x, rb.velocity.y, direction.z);
+                Shoot();
             }
-            else if (varJoystick.Horizontal == 0 && varJoystick.Vertical == 0)
+
+            if(!MovementLock)
             {
-                anim.SetFloat("Forward", Mathf.Clamp01(rb.velocity.magnitude));
+                if (varJoystick.Horizontal != 0 || varJoystick.Vertical != 0)
+                {
+                    //joystick inputs to direction vector
+                    Vector3 direction = new Vector3(varJoystick.Horizontal, 0f, varJoystick.Vertical);
+
+                    //Set Rotation
+                    float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+                    transform.DORotate(new Vector3(0f, targetAngle, 0f), 0.1f);
+
+                    //Set movement
+                    rb.velocity = new Vector3(direction.x * PlayerSpeed, rb.velocity.y , direction.z*PlayerSpeed);
+
+                    //Set Animation for running
+                    float forward = Mathf.Clamp01(direction.magnitude);
+                    anim.SetFloat("Forward", forward);
+                }
+                else if (varJoystick.Horizontal == 0 && varJoystick.Vertical == 0)
+                {
+                    anim.SetFloat("Forward", Mathf.Clamp01(rb.velocity.magnitude));
+                }
             }
         }
     }
@@ -64,6 +81,7 @@ public class playerManager : MonoBehaviour
     public void Death()
     {
         isDead = true;
+        anim.SetTrigger("Death");
     }
     public void Shoot()
     {
@@ -82,6 +100,16 @@ public class playerManager : MonoBehaviour
         }
     }
 
+    public void BuffSpeedNow(float multiplier, float time)
+    {
+        StartCoroutine(BuffSpeed(multiplier, time));
+    }
+    public IEnumerator BuffSpeed(float multiplier , float time)
+    {
+        PlayerSpeed = PlayerSpeed * multiplier;
+        yield return new WaitForSeconds(time);
+        PlayerSpeed = BaseSpeed;
+    }
     IEnumerator ShootStraight()
     {
         canShoot = false;
@@ -90,7 +118,7 @@ public class playerManager : MonoBehaviour
         projectile.GetComponent<ProjectileObserver>().SplashScale = PlayerSkill.SkillRootScale;
         projectile.transform.DOScale(PlayerSkill.SkillRootScale , 0.01f);
         GameObject projectileSkin = Instantiate(PlayerSkill.SkillPrefab , projectile.transform.position , Quaternion.Euler(0,0,0) , projectile.transform);
-        projectile.transform.DOMove(transform.position + transform.forward * 10 , 1f);
+        projectile.transform.DOMove(transform.position + transform.forward * ProjectileRange , 1f);
         Destroy(projectile, 1.2f);
         yield return new WaitForSeconds(PlayerSkill.SkillReloadTime);
         canShoot = true;
@@ -139,11 +167,11 @@ public class playerManager : MonoBehaviour
         GameObject projectileSkin = Instantiate(PlayerSkill.SkillPrefab, projectile.transform.position, Quaternion.Euler(0, 0, 0), projectile.transform);
 
         if (tempWaveNumber == 0)
-            projectile.transform.DOMove(ShootRight.transform.position + ShootRight.transform.forward * 10, 1f);
+            projectile.transform.DOMove(ShootRight.transform.position + ShootRight.transform.forward * ProjectileRange, 1f);
         else if (tempWaveNumber == 1)
-            projectile.transform.DOMove(ShootMiddle.transform.position + ShootMiddle.transform.forward * 10, 1f);
+            projectile.transform.DOMove(ShootMiddle.transform.position + ShootMiddle.transform.forward * ProjectileRange, 1f);
         else
-            projectile.transform.DOMove(ShootLeft.transform.position + ShootLeft.transform.forward * 10, 1f);
+            projectile.transform.DOMove(ShootLeft.transform.position + ShootLeft.transform.forward * ProjectileRange, 1f);
 
         Destroy(projectile, 1.2f);
         yield return new WaitForSeconds(PlayerSkill.SkillReloadTime);
@@ -167,19 +195,19 @@ public class playerManager : MonoBehaviour
         projectile.GetComponent<ProjectileObserver>().SplashScale = PlayerSkill.SkillRootScale;
         projectile.transform.DOScale(PlayerSkill.SkillRootScale, 0.01f);
         GameObject projectileSkin = Instantiate(PlayerSkill.SkillPrefab, projectile.transform.position, Quaternion.Euler(0, 0, 0), projectile.transform);
-        projectile.transform.DOMove(ShootRight.transform.position + ShootRight.transform.forward * 10 + ShootRight.transform.right * 3, 1f);
+        projectile.transform.DOMove(ShootRight.transform.position + ShootRight.transform.forward * ProjectileRange + ShootRight.transform.right * 3, 1f);
         Destroy(projectile, 1.2f);
         projectile2.GetComponent<ProjectileObserver>().SplashEffect = PlayerSkill.SplashEffect;
         projectile2.GetComponent<ProjectileObserver>().SplashScale = PlayerSkill.SkillRootScale;
         projectile2.transform.DOScale(PlayerSkill.SkillRootScale, 0.01f);
         GameObject projectileSkin2 = Instantiate(PlayerSkill.SkillPrefab, projectile2.transform.position, Quaternion.Euler(0, 0, 0), projectile2.transform);
-        projectile2.transform.DOMove(ShootMiddle.transform.position + ShootMiddle.transform.forward * 10, 1f );
+        projectile2.transform.DOMove(ShootMiddle.transform.position + ShootMiddle.transform.forward * ProjectileRange, 1f );
         Destroy(projectile2, 1.2f);
         projectile3.GetComponent<ProjectileObserver>().SplashEffect = PlayerSkill.SplashEffect;
         projectile3.GetComponent<ProjectileObserver>().SplashScale = PlayerSkill.SkillRootScale;
         projectile3.transform.DOScale(PlayerSkill.SkillRootScale, 0.01f);
         GameObject projectileSkin3 = Instantiate(PlayerSkill.SkillPrefab, projectile3.transform.position, Quaternion.Euler(0, 0, 0), projectile3.transform);
-        projectile3.transform.DOMove(ShootLeft.transform.position + ShootLeft.transform.forward * 10 + ShootLeft.transform.right * -3, 1f);
+        projectile3.transform.DOMove(ShootLeft.transform.position + ShootLeft.transform.forward * ProjectileRange + ShootLeft.transform.right * -3, 1f);
         Destroy(projectile3, 1.2f);
         yield return new WaitForSeconds(PlayerSkill.SkillReloadTime);
         canShoot = true;
@@ -212,13 +240,13 @@ public class playerManager : MonoBehaviour
         projectile.GetComponent<ProjectileObserver>().SplashScale = PlayerSkill.SkillRootScale;
         projectile.transform.DOScale(PlayerSkill.SkillRootScale, 0.01f);
         GameObject projectileSkin = Instantiate(PlayerSkill.SkillPrefab, projectile.transform.position, Quaternion.Euler(0, 0, 0), projectile.transform);
-        projectile.transform.DOMove(ShootRight.transform.position + ShootRight.transform.forward * 10, 1f);
+        projectile.transform.DOMove(ShootRight.transform.position + ShootRight.transform.forward * ProjectileRange, 1f);
         Destroy(projectile, 1.2f);
         projectile3.GetComponent<ProjectileObserver>().SplashEffect = PlayerSkill.SplashEffect;
         projectile3.GetComponent<ProjectileObserver>().SplashScale = PlayerSkill.SkillRootScale;
         projectile3.transform.DOScale(PlayerSkill.SkillRootScale, 0.01f);
         GameObject projectileSkin3 = Instantiate(PlayerSkill.SkillPrefab, projectile3.transform.position, Quaternion.Euler(0, 0, 0), projectile3.transform);
-        projectile3.transform.DOMove(ShootLeft.transform.position + ShootLeft.transform.forward * 10, 1f);
+        projectile3.transform.DOMove(ShootLeft.transform.position + ShootLeft.transform.forward * ProjectileRange, 1f);
         Destroy(projectile3, 1.2f);
         yield return new WaitForSeconds(PlayerSkill.SkillReloadTime);
         canShoot = true;
@@ -246,19 +274,19 @@ public class playerManager : MonoBehaviour
         projectile.GetComponent<ProjectileObserver>().SplashScale = PlayerSkill.SkillRootScale;
         projectile.transform.DOScale(PlayerSkill.SkillRootScale, 0.01f);
         GameObject projectileSkin = Instantiate(PlayerSkill.SkillPrefab, projectile.transform.position, Quaternion.Euler(0, 0, 0), projectile.transform);
-        projectile.transform.DOMove(ShootRight.transform.position + ShootRight.transform.forward * 10, 1f);
+        projectile.transform.DOMove(ShootRight.transform.position + ShootRight.transform.forward * ProjectileRange, 1f);
         Destroy(projectile, 1.2f);
         projectile2.GetComponent<ProjectileObserver>().SplashEffect = PlayerSkill.SplashEffect;
         projectile2.GetComponent<ProjectileObserver>().SplashScale = PlayerSkill.SkillRootScale;
         projectile2.transform.DOScale(PlayerSkill.SkillRootScale, 0.01f);
         GameObject projectileSkin2 = Instantiate(PlayerSkill.SkillPrefab, projectile2.transform.position, Quaternion.Euler(0, 0, 0), projectile2.transform);
-        projectile2.transform.DOMove(ShootMiddle.transform.position + ShootMiddle.transform.forward * 10, 1f);
+        projectile2.transform.DOMove(ShootMiddle.transform.position + ShootMiddle.transform.forward * ProjectileRange, 1f);
         Destroy(projectile2, 1.2f);
         projectile3.GetComponent<ProjectileObserver>().SplashEffect = PlayerSkill.SplashEffect;
         projectile3.GetComponent<ProjectileObserver>().SplashScale = PlayerSkill.SkillRootScale;
         projectile3.transform.DOScale(PlayerSkill.SkillRootScale, 0.01f);
         GameObject projectileSkin3 = Instantiate(PlayerSkill.SkillPrefab, projectile3.transform.position, Quaternion.Euler(0, 0, 0), projectile3.transform);
-        projectile3.transform.DOMove(ShootLeft.transform.position + ShootLeft.transform.forward * 10, 1f);
+        projectile3.transform.DOMove(ShootLeft.transform.position + ShootLeft.transform.forward * ProjectileRange, 1f);
         Destroy(projectile3, 1.2f);
         yield return new WaitForSeconds(PlayerSkill.SkillReloadTime);
         canShoot = true;

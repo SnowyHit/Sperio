@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 19849376}
   - component: {fileID: 19983730}
   - component: {fileID: 8285908}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ExplosionFireballFire
   m_TagString: Missile
   m_Icon: {fileID: 0}
@@ -4940,7 +4940,7 @@ GameObject:
   - component: {fileID: 448614}
   - component: {fileID: 19881018}
   - component: {fileID: 19915052}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FireCurve
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9759,7 +9759,7 @@ GameObject:
   - component: {fileID: 406126}
   - component: {fileID: 19845456}
   - component: {fileID: 19961850}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14614,7 +14614,7 @@ GameObject:
   - component: {fileID: 438518}
   - component: {fileID: 19876996}
   - component: {fileID: 19913012}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19406,7 +19406,7 @@ GameObject:
   - component: {fileID: 422798}
   - component: {fileID: 19899782}
   - component: {fileID: 19943904}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}

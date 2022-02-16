@@ -1,29 +1,90 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class VisibilityObserver : MonoBehaviour
 {
-    public List<Material> baseMaterial;
-    public Material fadeMaterial;
-    int objectNumber = -1 ;
+    // Check if if this collides with any objects with the tag of Obstacle , fade's its material.
+    MeshRenderer tempMeshRenderer = null;
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Obstacle")
         {
-            objectNumber += 1;
-            baseMaterial.Add(other.GetComponent<MeshRenderer>().material);
-            other.GetComponent<MeshRenderer>().material = fadeMaterial;
+            if(other.transform.childCount > 0)
+            {
+                if(other.GetComponent<MeshRenderer>() != null)
+                {
+                    tempMeshRenderer = other.GetComponent<MeshRenderer>();
+                    foreach (var material in tempMeshRenderer.materials)
+                    {
+                        material.DOFade(0, 0.2f);
+                    }
+
+                }
+                foreach (Transform child in other.transform)
+                {
+                    if (child.GetComponent<MeshRenderer>() != null)
+                    {
+                        tempMeshRenderer = child.GetComponent<MeshRenderer>();
+                        foreach (var material in tempMeshRenderer.materials)
+                        {
+                            material.DOFade(0, 0.2f);
+                        }
+
+                    }
+                }
+            }
+            else
+            {
+                tempMeshRenderer = other.GetComponent<MeshRenderer>();
+                foreach (var material in tempMeshRenderer.materials)
+                {
+                    material.DOFade(0, 0.2f);
+                }
+            }
+            
         }
     }
 
     void OnTriggerExit(Collider other)
     {
+
         if (other.gameObject.tag == "Obstacle")
         {
-            other.GetComponent<MeshRenderer>().material = baseMaterial[objectNumber];
-            baseMaterial.Remove(baseMaterial[objectNumber]);
-            objectNumber -= 1;
+            if (other.transform.childCount > 0)
+            {
+                if (other.GetComponent<MeshRenderer>() != null)
+                {
+                    tempMeshRenderer = other.GetComponent<MeshRenderer>();
+                    foreach (var material in tempMeshRenderer.materials)
+                    {
+                        material.DOFade(1, 0.2f);
+                    }
+
+                }
+                foreach (Transform child in other.transform)
+                {
+                    if (child.GetComponent<MeshRenderer>() != null)
+                    {
+                        tempMeshRenderer = child.GetComponent<MeshRenderer>();
+                        foreach (var material in tempMeshRenderer.materials)
+                        {
+                            material.DOFade(1, 0.2f);
+                        }
+
+                    }
+                }
+            }
+            else
+            {
+                tempMeshRenderer = other.GetComponent<MeshRenderer>();
+                foreach (var material in tempMeshRenderer.materials)
+                {
+                    material.DOFade(1, 0.2f);
+                }
+            }
+
         }
     }
 
