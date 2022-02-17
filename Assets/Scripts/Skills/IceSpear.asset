@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SkillPrefab: {fileID: 160792, guid: 7e9a3591984cda1499dc675622a57b0b, type: 3}
   SplashEffect: {fileID: 153912, guid: 932046b7eaf3b554f8d74c81e2f00558, type: 3}
-  SkillReloadTime: 0.31
+  SkillReloadTime: 0.7
   SkillRootScale: 0.7
   Damage: 0

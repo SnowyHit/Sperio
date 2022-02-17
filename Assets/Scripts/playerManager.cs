@@ -12,7 +12,8 @@ public class PlayerManager : MonoBehaviour
 
     //get a player prefab here for skin
     public Skill PlayerSkill;
-    Rigidbody rb;
+    Rigidbody playerRigidbody;
+    public Collider PlayerCollider;
     Animator anim;
     VariableJoystick varJoystick;
     public float PlayerSpeed;
@@ -31,7 +32,7 @@ public class PlayerManager : MonoBehaviour
     public ShootingStyle PlayerShootingStyle;
     private int waveShootNumber;
     public List<GameObject> trails = new List<GameObject>();
-
+    public bool touchingGround;
     private void Start()
     {
         // Set Skill Prefab And Skill Reload Time here 
@@ -39,10 +40,10 @@ public class PlayerManager : MonoBehaviour
         // Set Player Skin here
         cameraGO = Camera.main.gameObject;
         varJoystick = GameObject.FindObjectOfType<VariableJoystick>();
-        rb = GetComponent<Rigidbody>();
+        playerRigidbody = GetComponent<Rigidbody>();
+        PlayerCollider = GetComponent<CapsuleCollider>();
         anim = gameObject.GetComponentInChildren<Animator>();
     }
-
     private void FixedUpdate()
     {
         if(!isDead)
@@ -52,7 +53,7 @@ public class PlayerManager : MonoBehaviour
                 Shoot();
             }
 
-            if(!MovementLock)
+            if (!MovementLock && Physics.Raycast(PlayerCollider.bounds.center, Vector3.down, PlayerCollider.bounds.extents.y + 0.1f));
             {
                 if (varJoystick.Horizontal != 0 || varJoystick.Vertical != 0)
                 {
@@ -64,7 +65,7 @@ public class PlayerManager : MonoBehaviour
                     transform.DORotate(new Vector3(0f, targetAngle, 0f), 0.1f);
 
                     //Set movement
-                    rb.velocity = new Vector3(direction.x * PlayerSpeed, rb.velocity.y , direction.z*PlayerSpeed);
+                    playerRigidbody.velocity = new Vector3(direction.x * PlayerSpeed, playerRigidbody.velocity.y , direction.z*PlayerSpeed);
 
                     //Set Animation for running
                     float forward = Mathf.Clamp01(direction.magnitude);
@@ -72,7 +73,7 @@ public class PlayerManager : MonoBehaviour
                 }
                 else if (varJoystick.Horizontal == 0 && varJoystick.Vertical == 0)
                 {
-                    anim.SetFloat("Forward", Mathf.Clamp01(rb.velocity.magnitude));
+                    anim.SetFloat("Forward", Mathf.Clamp01(playerRigidbody.velocity.magnitude));
                 }
             }
         }

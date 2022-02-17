@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/SceneTransition.unity
+    guid: 3ccaa65016f6d304685a98e244593623
+  - enabled: 1
+    path: Assets/Scenes/MechanicsDemo 1.unity
+    guid: fdbf56147d730ca49a05b7e4d4018412
   m_configObjects: {}
