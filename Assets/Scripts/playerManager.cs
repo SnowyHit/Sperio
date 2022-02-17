@@ -4,6 +4,8 @@ using UnityEngine;
 using DG.Tweening;
 
 public enum ShootingStyle { Straight, Triangle, Stream2, Stream3, Wave }
+public enum Trail { FireFloor , ColdFloor, SpikeFireTrail, ElectricBlue, ElectricPurple, ElectricYellow , Void}
+public enum Soul { Crimson , Green , Orange , Purple}
 public class PlayerManager : MonoBehaviour
 {
     // TODO : Make A persistance Datamanager , log in screen and sace player data ( owned skills and owned skins ) there.
@@ -11,8 +13,11 @@ public class PlayerManager : MonoBehaviour
     //get a Skill class here
 
     //get a player prefab here for skin
+    public GameObject PlayerSkin;
+    public GameObject PlayerSoulGameObject;
+    public GameObject PlayerSoulExplosionGameObject;
     public Skill PlayerSkill;
-    Rigidbody playerRigidbody;
+    public Rigidbody PlayerRigidbody;
     public Collider PlayerCollider;
     Animator anim;
     VariableJoystick varJoystick;
@@ -30,8 +35,12 @@ public class PlayerManager : MonoBehaviour
     public bool ShootLock = false;
     public bool MovementLock = false;
     public ShootingStyle PlayerShootingStyle;
+    public Trail PlayerTrail;
+    public Soul PlayerSoul;
     private int waveShootNumber;
-    public List<GameObject> trails = new List<GameObject>();
+    public List<GameObject> Trails = new List<GameObject>();
+    public List<GameObject> Souls = new List<GameObject>();
+    public List<GameObject> SoulExplosions = new List<GameObject>();
     public bool touchingGround;
     private void Start()
     {
@@ -40,7 +49,7 @@ public class PlayerManager : MonoBehaviour
         // Set Player Skin here
         cameraGO = Camera.main.gameObject;
         varJoystick = GameObject.FindObjectOfType<VariableJoystick>();
-        playerRigidbody = GetComponent<Rigidbody>();
+        PlayerRigidbody = GetComponent<Rigidbody>();
         PlayerCollider = GetComponent<CapsuleCollider>();
         anim = gameObject.GetComponentInChildren<Animator>();
     }
@@ -48,6 +57,9 @@ public class PlayerManager : MonoBehaviour
     {
         if(!isDead)
         {
+            CheckTrail();
+            CheckSoul();
+
             if(!ShootLock)
             {
                 Shoot();
@@ -65,7 +77,7 @@ public class PlayerManager : MonoBehaviour
                     transform.DORotate(new Vector3(0f, targetAngle, 0f), 0.1f);
 
                     //Set movement
-                    playerRigidbody.velocity = new Vector3(direction.x * PlayerSpeed, playerRigidbody.velocity.y , direction.z*PlayerSpeed);
+                    PlayerRigidbody.velocity = new Vector3(direction.x * PlayerSpeed, PlayerRigidbody.velocity.y , direction.z*PlayerSpeed);
 
                     //Set Animation for running
                     float forward = Mathf.Clamp01(direction.magnitude);
@@ -73,7 +85,7 @@ public class PlayerManager : MonoBehaviour
                 }
                 else if (varJoystick.Horizontal == 0 && varJoystick.Vertical == 0)
                 {
-                    anim.SetFloat("Forward", Mathf.Clamp01(playerRigidbody.velocity.magnitude));
+                    anim.SetFloat("Forward", Mathf.Clamp01(PlayerRigidbody.velocity.magnitude));
                 }
             }
         }
@@ -83,6 +95,14 @@ public class PlayerManager : MonoBehaviour
     {
         isDead = true;
         anim.SetTrigger("Death");
+        GameObject.FindObjectOfType<GameUI>().SetState(GameState.Dead.ToString());
+    }
+
+    public void Revive()
+    {
+        isDead = false;
+        anim.ResetTrigger("Death");
+        anim.CrossFade("Locomotion" , 0.1f);
     }
     public void Shoot()
     {
@@ -101,6 +121,37 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    public void CheckTrail()
+    {
+        if (!Trails[((int)PlayerTrail)].activeSelf)
+        {
+            Debug.Log("CheckTrailWorking..");
+            foreach (GameObject trail in Trails)
+            {
+                if (trail == Trails[((int)PlayerTrail)])
+                    trail.SetActive(true);
+                else
+                    trail.SetActive(false);
+            }
+        }
+    }
+    public void CheckSoul()
+    {
+        if (Souls[((int)PlayerSoul)] != PlayerSoulGameObject)
+        {
+            Debug.Log("CheckSoulWorking..");
+            int i = 0;
+            foreach (GameObject soul in Souls)
+            {
+                if (soul == Souls[((int)PlayerSoul)])
+                {
+                    PlayerSoulGameObject = soul;
+                    PlayerSoulExplosionGameObject = SoulExplosions[i];
+                }
+                i += 1;
+            }
+        }
+    }
     public void BuffSpeedNow(float multiplier, float time)
     {
         StartCoroutine(BuffSpeed(multiplier, time));
@@ -110,6 +161,16 @@ public class PlayerManager : MonoBehaviour
         PlayerSpeed = PlayerSpeed * multiplier;
         yield return new WaitForSeconds(time);
         PlayerSpeed = BaseSpeed;
+    }
+    public void BuffATKSpeedNow(float multiplier, float time)
+    {
+        StartCoroutine(BuffATKSpeed(multiplier, time));
+    }
+    public IEnumerator BuffATKSpeed(float multiplier, float time)
+    {
+        PlayerSkill.SkillReloadTime = PlayerSkill.SkillReloadTime * multiplier;
+        yield return new WaitForSeconds(time);
+        PlayerSkill.SkillReloadTime = PlayerSkill.BaseSkillReloadTime;
     }
     IEnumerator ShootStraight()
     {

@@ -8,6 +8,7 @@ public class Skill : ScriptableObject
     public GameObject SkillPrefab;
     public GameObject SplashEffect;
     public float SkillReloadTime;
+    public float BaseSkillReloadTime;
     public float SkillRootScale;
     public float Damage;
 }
