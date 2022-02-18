@@ -47,6 +47,9 @@ public class PlayerManager : MonoBehaviour
         // Set Skill Prefab And Skill Reload Time here 
 
         // Set Player Skin here
+
+        //Instantiate Player Skin
+        Instantiate(PlayerSkin, transform.position, Quaternion.identity, transform);
         cameraGO = Camera.main.gameObject;
         varJoystick = GameObject.FindObjectOfType<VariableJoystick>();
         PlayerRigidbody = GetComponent<Rigidbody>();
