@@ -162,6 +162,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5348939533438104630}
+  - component: {fileID: 5302575861989383807}
+  - component: {fileID: -3538689622611026295}
   m_Layer: 0
   m_Name: Cha_Slime
   m_TagString: Untagged
@@ -186,6 +188,39 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5302575861989383807
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5348939533437675542}
+  m_Material: {fileID: 13400000, guid: c6cb087a5fad22c4c9aa5b5d8be0c365, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.4, y: 0.4, z: 0.4}
+  m_Center: {x: 0, y: 0.25, z: 0}
+--- !u!95 &-3538689622611026295
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5348939533437675542}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 81c36e2bb74455a429ffac7ebb8fdf34, type: 3}
+  m_Controller: {fileID: 9100000, guid: bac9ac471df397f408efec5baba2c111, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5348939533437675548
 GameObject:
   m_ObjectHideFlags: 0

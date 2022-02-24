@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum BuffType {Speed, StyleChange}
+public enum BuffType {Speed, StyleChange , AttackSpeed}
 public class PowerUpObserver : MonoBehaviour
 {
     public BuffType BuffType;
@@ -26,6 +26,13 @@ public class PowerUpObserver : MonoBehaviour
             else if (BuffType == BuffType.StyleChange)
             {
                 other.GetComponent<PlayerManager>().PlayerShootingStyle = ShootingStyleChange;
+                Destroy(Instantiate(BlowUp, transform.position, Quaternion.identity), 0.5f);
+                Destroy(Instantiate(PlayerBuffEffect, other.transform.position, Quaternion.identity), 0.5f);
+                Destroy(gameObject, 0.01f);
+            }
+            else if (BuffType == BuffType.AttackSpeed)
+            {
+                other.GetComponent<PlayerManager>().BuffATKSpeedNow(SpeedMultiplier, SpeedTime);
                 Destroy(Instantiate(BlowUp, transform.position, Quaternion.identity), 0.5f);
                 Destroy(Instantiate(PlayerBuffEffect, other.transform.position, Quaternion.identity), 0.5f);
                 Destroy(gameObject, 0.01f);

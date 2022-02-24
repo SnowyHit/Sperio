@@ -62,7 +62,7 @@ public class LevelManager : MonoBehaviour
         CurrentLevel += 1;
         PlayerPrefs.SetInt("CurrentLevel" , CurrentLevel);
         CreatedLevels.Add(Instantiate(Levels[CurrentLevel + 1], startingPoint + NextLevelOffset, Quaternion.Euler(0, -90, 0)));
-        StartCoroutine(TransportPlayer(CreatedLevels[CreatedLevels.Count - 1].transform.Find("PlayerDropZone").transform.position));
+        StartCoroutine(TransportPlayer(CreatedLevels[CurrentLevel].transform.Find("PlayerDropZone").transform.position));
         Destroy(CreatedLevels[0], 1f);
         CreatedLevels.RemoveAt(0);
         
@@ -80,9 +80,9 @@ public class LevelManager : MonoBehaviour
         tempPlayerManager.ShootLock = true;
         tempPlayerManager.PlayerSkin.SetActive(false);
         GameObject soul = Instantiate(tempPlayerManager.PlayerSoulGameObject, player.transform.position, Quaternion.identity);
-        player.transform.DOMove(new Vector3(position.x, position.y + 50, transform.position.z + (position.z - transform.position.z) / 2), TempMoveTime / 2).SetEase(Ease.OutQuad);
+        player.transform.DOMove(new Vector3(position.x, position.y + 50, player.transform.position.z + (position.z - player.transform.position.z) / 2), TempMoveTime / 2).SetEase(Ease.OutQuad);
         player.transform.DOLookAt(Vector3.forward, 0.1f);
-        soul.transform.DOMove(new Vector3(position.x, position.y + 50, transform.position.z + (position.z - transform.position.z) / 2), TempMoveTime / 2).SetEase(Ease.OutQuad);
+        soul.transform.DOMove(new Vector3(position.x, position.y + 50, player.transform.position.z + (position.z - player.transform.position.z) / 2), TempMoveTime / 2).SetEase(Ease.OutQuad);
         yield return new WaitForSeconds(TempMoveTime / 2);
 
         player.transform.DOMove(position, TempMoveTime / 2).SetEase(Ease.OutQuad);

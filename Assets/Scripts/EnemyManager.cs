@@ -11,9 +11,14 @@ public class EnemyManager : MonoBehaviour
     NavMeshAgent navMeshAgent;
     PlayerManager playerManager;
     public int ShooterRange = 10;
+    public bool MovementLock = false;
+    Animator enemyAnimator;
+    CapsuleCollider enemyCapsule;
     // Start is called before the first frame update
     void Start()
     {
+        enemyAnimator = transform.GetComponentInChildren<Animator>();
+        enemyCapsule = GetComponent<CapsuleCollider>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         playerManager = GameObject.FindObjectOfType<PlayerManager>();
         SetType();
@@ -22,8 +27,11 @@ public class EnemyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        navMeshAgent.SetDestination(playerManager.transform.position);
-        transform.DOLookAt(playerManager.transform.position , 0.1f);
+        if(!MovementLock)
+        {
+            navMeshAgent.SetDestination(playerManager.transform.position);
+            transform.DOLookAt(playerManager.transform.position , 0.1f , AxisConstraint.Y);
+        }
     }
     public void SetType()
     {
@@ -61,5 +69,43 @@ public class EnemyManager : MonoBehaviour
         {
             navMeshAgent.stoppingDistance = ShooterRange;
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            if(Type == EnemyType.Blob)
+            {
+                Debug.Log(transform.forward);
+                playerManager.PlayerRigidbody.AddForce(transform.forward + transform.up, ForceMode.Impulse);
+                Stun(0.5f);
+            }
+            else if(Type == EnemyType.Spike)
+            {
+                playerManager.Death();
+            }
+        }
+    }
+
+    public void Stun(float time)
+    {
+        StartCoroutine(StunNow(time));
+    }
+
+    IEnumerator StunNow(float time)
+    {
+        MovementLock = true;
+        yield return new WaitForSeconds(time);
+        MovementLock = false;
+    }
+
+    public void Kill()
+    {
+        MovementLock = true;
+        enemyCapsule.enabled = false;
+        navMeshAgent.enabled = false;
+        enemyAnimator.SetTrigger("Dead");
+        Destroy(gameObject, 2f);
     }
 }

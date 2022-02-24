@@ -50,6 +50,7 @@ public class PlayerManager : MonoBehaviour
         // Set Player Skin here
 
         //Instantiate Player Skin
+        PlayerSkill.SkillReloadTime = PlayerSkill.BaseSkillReloadTime;
         PlayerSkin = Instantiate(PlayerSkinPrefab, transform.position, Quaternion.identity, transform);
         cameraGO = Camera.main.gameObject;
         varJoystick = GameObject.FindObjectOfType<VariableJoystick>();
@@ -172,7 +173,7 @@ public class PlayerManager : MonoBehaviour
     }
     public IEnumerator BuffATKSpeed(float multiplier, float time)
     {
-        PlayerSkill.SkillReloadTime = PlayerSkill.SkillReloadTime * multiplier;
+        PlayerSkill.SkillReloadTime = PlayerSkill.SkillReloadTime / multiplier;
         yield return new WaitForSeconds(time);
         PlayerSkill.SkillReloadTime = PlayerSkill.BaseSkillReloadTime;
     }

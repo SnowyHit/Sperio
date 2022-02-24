@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7922879867356397014}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.77, y: 0.077999994, z: 0.42900053}
+  m_LocalPosition: {x: 0.5, y: 0.077999994, z: 0.42900053}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -320,7 +320,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7922879868626886404}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.82, y: 0.078, z: 0.429}
+  m_LocalPosition: {x: -0.5, y: 0.078, z: 0.429}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -465,6 +465,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerSkin: {fileID: 0}
+  PlayerSkinPrefab: {fileID: 0}
   PlayerSoulGameObject: {fileID: 0}
   PlayerSoulExplosionGameObject: {fileID: 0}
   PlayerSkill: {fileID: 11400000, guid: e8697d637f51b6c48a4d8af7381530f1, type: 2}
