@@ -14,6 +14,7 @@ public class PlayerManager : MonoBehaviour
 
     //get a player prefab here for skin
     public GameObject PlayerSkin;
+    public GameObject PlayerSkinPrefab;
     public GameObject PlayerSoulGameObject;
     public GameObject PlayerSoulExplosionGameObject;
     public Skill PlayerSkill;
@@ -49,7 +50,7 @@ public class PlayerManager : MonoBehaviour
         // Set Player Skin here
 
         //Instantiate Player Skin
-        Instantiate(PlayerSkin, transform.position, Quaternion.identity, transform);
+        PlayerSkin = Instantiate(PlayerSkinPrefab, transform.position, Quaternion.identity, transform);
         cameraGO = Camera.main.gameObject;
         varJoystick = GameObject.FindObjectOfType<VariableJoystick>();
         PlayerRigidbody = GetComponent<Rigidbody>();
@@ -68,7 +69,7 @@ public class PlayerManager : MonoBehaviour
                 Shoot();
             }
 
-            if (!MovementLock && Physics.Raycast(PlayerCollider.bounds.center, Vector3.down, PlayerCollider.bounds.extents.y + 0.1f));
+            if (!MovementLock && Physics.Raycast(PlayerCollider.bounds.center, Vector3.down, PlayerCollider.bounds.extents.y + 0.1f))
             {
                 if (varJoystick.Horizontal != 0 || varJoystick.Vertical != 0)
                 {

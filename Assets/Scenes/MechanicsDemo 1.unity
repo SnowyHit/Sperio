@@ -109,7 +109,7 @@ NavMeshSettings:
     agentRadius: 0.59
     agentHeight: 1.66
     agentSlope: 45
-    agentClimb: 1.69
+    agentClimb: 0.72
     ledgeDropHeight: 0.97
     maxJumpAcrossDistance: 0
     minRegionArea: 2
@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: eeccd9d8605fc914695138830601baf3, type: 2}
+  m_NavMeshData: {fileID: 0}
 --- !u!1 &34253623
 GameObject:
   m_ObjectHideFlags: 0
@@ -523,9 +523,9 @@ MonoBehaviour:
   CurrentLevel: 0
   Levels:
   - {fileID: 5196907222204499319, guid: 8dd67842f39b1f2498806b78b1937fe6, type: 3}
-  - {fileID: 5196907222204499319, guid: 8dd67842f39b1f2498806b78b1937fe6, type: 3}
+  - {fileID: 5196907222204499319, guid: b43a645d160ec804fbcf6c8770ed5158, type: 3}
   CreatedLevels: []
-  NextLevelOffset: {x: 0, y: -100, z: 500}
+  NextLevelOffset: {x: 0, y: 0, z: 500}
   MoveTime: 0.01
 --- !u!1 &607623820
 GameObject:
@@ -880,7 +880,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3881087803549984439, guid: ec536a7718376554185e4a856d5ae230, type: 3}
       propertyPath: joystickType
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3881087803815115470, guid: ec536a7718376554185e4a856d5ae230, type: 3}
       propertyPath: m_Sprite
@@ -2042,6 +2042,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7922879868694401716, guid: 16cdb2d607662254cbe4a060bc57c332, type: 3}
       propertyPath: PlayerSkin
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7922879868694401716, guid: 16cdb2d607662254cbe4a060bc57c332, type: 3}
+      propertyPath: PlayerSkinPrefab
       value: 
       objectReference: {fileID: 3903739692867933305, guid: 0bbeeaa342bb03240a9be94b7eaa7ca7, type: 3}
     - target: {fileID: 7922879868846043542, guid: 16cdb2d607662254cbe4a060bc57c332, type: 3}

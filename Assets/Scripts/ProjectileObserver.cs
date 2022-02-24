@@ -9,10 +9,10 @@ public class ProjectileObserver : MonoBehaviour
     public float SplashScale;
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Obstacle" )
+        if(other.tag == "Obstacle" || other.tag == "Enemy")
         {
-            Destroy(gameObject);
-            DOTween.Kill(gameObject);
+            gameObject.SetActive(false);
+            Destroy(gameObject , 1f);
             var collisionPoint = other.ClosestPoint(transform.position);
             GameObject temp = Instantiate(SplashEffect, collisionPoint, Quaternion.Euler(0, 0, 0));
             temp.transform.DOScale(SplashScale  , 0.01f);

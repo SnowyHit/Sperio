@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
+using UnityEngine.AI;
 public class LevelManager : MonoBehaviour
 {
     //GetCurrent Level and load the prefab.
+
+
+    NavMeshSurface navSurface;
     GameObject player;
     public int CurrentLevel;
     public List<GameObject> Levels;
@@ -35,6 +39,8 @@ public class LevelManager : MonoBehaviour
             //Last Level
             CreatedLevels.Add(Instantiate(Levels[CurrentLevel], startingPoint, Quaternion.Euler(0, -90, 0)));
         }
+
+
     }
 
     public void GoToNextLevel()
@@ -48,6 +54,7 @@ public class LevelManager : MonoBehaviour
         {
             StartCoroutine(TransportPlayer(CreatedLevels[CreatedLevels.Count - 1].transform.Find("PlayerDropZone").transform.position));
             CurrentLevel += 1;
+            PlayerPrefs.SetInt("CurrentLevel", CurrentLevel);
             return;
         }
 
@@ -60,7 +67,10 @@ public class LevelManager : MonoBehaviour
         CreatedLevels.RemoveAt(0);
         
     }
-
+    public void ResetGameNow()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
     public IEnumerator TransportPlayer(Vector3 position)
     {
         float TempMoveTime = Mathf.Abs(Vector3.Distance(player.transform.position, position)) * MoveTime;
@@ -70,46 +80,23 @@ public class LevelManager : MonoBehaviour
         tempPlayerManager.ShootLock = true;
         tempPlayerManager.PlayerSkin.SetActive(false);
         GameObject soul = Instantiate(tempPlayerManager.PlayerSoulGameObject, player.transform.position, Quaternion.identity);
-        player.transform.DOMove(position , TempMoveTime).SetEase(Ease.OutQuad);
-        player.transform.DOLookAt(position, 0.1f);
-        soul.transform.DOMove(position , TempMoveTime).SetEase(Ease.OutQuad);
-        yield return new WaitForSeconds(TempMoveTime);
+        player.transform.DOMove(new Vector3(position.x, position.y + 50, transform.position.z + (position.z - transform.position.z) / 2), TempMoveTime / 2).SetEase(Ease.OutQuad);
+        player.transform.DOLookAt(Vector3.forward, 0.1f);
+        soul.transform.DOMove(new Vector3(position.x, position.y + 50, transform.position.z + (position.z - transform.position.z) / 2), TempMoveTime / 2).SetEase(Ease.OutQuad);
+        yield return new WaitForSeconds(TempMoveTime / 2);
+
+        player.transform.DOMove(position, TempMoveTime / 2).SetEase(Ease.OutQuad);
+        player.transform.DOLookAt(Vector3.forward, 0.1f);
+        soul.transform.DOMove(position, TempMoveTime / 2).SetEase(Ease.OutQuad);
+        yield return new WaitForSeconds(TempMoveTime / 2);
+
         Destroy(soul);
-        Destroy(Instantiate(tempPlayerManager.PlayerSoulExplosionGameObject, player.transform.position, Quaternion.identity , player.transform), 0.2f);
+        Destroy(Instantiate(tempPlayerManager.PlayerSoulExplosionGameObject, player.transform.position, Quaternion.identity, player.transform), 0.2f);
         yield return new WaitForSeconds(0.4f);
         tempPlayerManager.MovementLock = false;
         tempPlayerManager.ShootLock = false;
         tempPlayerManager.PlayerCollider.enabled = true;
         tempPlayerManager.PlayerSkin.SetActive(true);
         tempPlayerManager.PlayerRigidbody.useGravity = true;
-    }
-
-    public void ResetGameNow()
-    {
-        tempPlayerManager.PlayerCollider.enabled = false;
-        tempPlayerManager.Revive();
-        foreach (GameObject level in CreatedLevels)
-        {
-            Destroy(level);
-        }
-        CreatedLevels.Clear();
-        CurrentLevel = 0;
-        PlayerPrefs.SetInt("CurrentLevel", CurrentLevel);
-        startingPoint = Vector3.zero;
-        if (Levels.Count - 1 >= CurrentLevel + 1)
-        {
-            //Middle Level
-            CreatedLevels.Add(Instantiate(Levels[CurrentLevel], startingPoint, Quaternion.Euler(0, -90, 0)));
-            CreatedLevels.Add(Instantiate(Levels[CurrentLevel + 1], startingPoint + NextLevelOffset, Quaternion.Euler(0, -90, 0)));
-        }
-        else if (Levels.Count - 1 >= CurrentLevel)
-        {
-            //Last Level
-            CreatedLevels.Add(Instantiate(Levels[CurrentLevel], startingPoint, Quaternion.Euler(0, -90, 0)));
-        }
-        Debug.Log(player.transform.position);
-        StartCoroutine(TransportPlayer(new Vector3(5.3f , 5f, 2f)));
-
-        GameObject.FindObjectOfType<GameUI>().SetState(GameState.InGame.ToString());
     }
 }
