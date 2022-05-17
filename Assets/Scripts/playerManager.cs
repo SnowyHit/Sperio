@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Cinemachine;
 
 public enum ShootingStyle { Straight, Triangle, Stream2, Stream3, Wave }
 public enum Trail { FireFloor , ColdFloor, SpikeFireTrail, ElectricBlue, ElectricPurple, ElectricYellow , Void}
@@ -12,7 +13,9 @@ public class PlayerManager : MonoBehaviour
 
     //get a Skill class here
 
-    //get a player prefab here for skin
+    //get a player prefab here for skins
+    public CinemachineVirtualCamera vCam;
+    public CinemachineOrbitalTransposer orbitalCam;
     public GameObject PlayerSkin;
     public GameObject PlayerSkinPrefab;
     public GameObject PlayerSoulGameObject;
@@ -20,8 +23,8 @@ public class PlayerManager : MonoBehaviour
     public Skill PlayerSkill;
     public Rigidbody PlayerRigidbody;
     public Collider PlayerCollider;
-    Animator anim;
-    VariableJoystick varJoystick;
+    public Animator anim;
+    public VariableJoystick varJoystick;
     public float PlayerSpeed;
     public float BaseSpeed;
     public float ProjectileRange;
@@ -48,14 +51,11 @@ public class PlayerManager : MonoBehaviour
         // Set Skill Prefab And Skill Reload Time here 
 
         // Set Player Skin here
-
+        orbitalCam =  vCam.GetCinemachineComponent<CinemachineOrbitalTransposer>();
         //Instantiate Player Skin
         PlayerSkill.SkillReloadTime = PlayerSkill.BaseSkillReloadTime;
         PlayerSkin = Instantiate(PlayerSkinPrefab, transform.position, Quaternion.identity, transform);
         cameraGO = Camera.main.gameObject;
-        varJoystick = GameObject.FindObjectOfType<VariableJoystick>();
-        PlayerRigidbody = GetComponent<Rigidbody>();
-        PlayerCollider = GetComponent<CapsuleCollider>();
         anim = gameObject.GetComponentInChildren<Animator>();
     }
     private void FixedUpdate()
@@ -74,15 +74,18 @@ public class PlayerManager : MonoBehaviour
             {
                 if (varJoystick.Horizontal != 0 || varJoystick.Vertical != 0)
                 {
-                    //joystick inputs to direction vector
+                    orbitalCam.m_XAxis.m_InputAxisValue = varJoystick.Horizontal;
+                    //joystick inputs to direction vector   
                     Vector3 direction = new Vector3(varJoystick.Horizontal, 0f, varJoystick.Vertical);
-
+                    Debug.Log(transform.forward * varJoystick.Horizontal + " / " + transform.localPosition.z + varJoystick.Vertical);
                     //Set Rotation
-                    float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+                    float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
                     transform.DORotate(new Vector3(0f, targetAngle, 0f), 0.1f);
+                    Vector3 moveDir = Quaternion.Euler(0f, targetAngle , 0f) * Vector3.forward;
 
+                    
                     //Set movement
-                    PlayerRigidbody.velocity = new Vector3(direction.x * PlayerSpeed, PlayerRigidbody.velocity.y , direction.z*PlayerSpeed);
+                    PlayerRigidbody.velocity = new Vector3(moveDir.x * PlayerSpeed, PlayerRigidbody.velocity.y , moveDir.z*PlayerSpeed);
 
                     //Set Animation for running
                     float forward = Mathf.Clamp01(direction.magnitude);
@@ -91,6 +94,7 @@ public class PlayerManager : MonoBehaviour
                 else if (varJoystick.Horizontal == 0 && varJoystick.Vertical == 0)
                 {
                     anim.SetFloat("Forward", Mathf.Clamp01(PlayerRigidbody.velocity.magnitude));
+                    orbitalCam.m_XAxis.m_InputAxisValue = 0;
                 }
             }
         }
