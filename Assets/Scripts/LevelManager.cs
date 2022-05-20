@@ -10,22 +10,20 @@ public class LevelManager : MonoBehaviour
 
 
     NavMeshSurface navSurface;
-    GameObject player;
+    [SerializeField] GameObject player;
     public int CurrentLevel;
     public List<GameObject> Levels;
     public List<GameObject> CreatedLevels;
     Vector3 startingPoint;
     public Vector3 NextLevelOffset;
-    PlayerManager tempPlayerManager;
+    [SerializeField] PlayerManager tempPlayerManager;
     public float MoveTime;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player");
-        tempPlayerManager = player.GetComponent<PlayerManager>();
+        
         CurrentLevel = PlayerPrefs.HasKey("CurrentLevel") ? PlayerPrefs.GetInt("CurrentLevel") : 0;
-        Debug.Log(CurrentLevel);
         startingPoint = Vector3.zero;
         //Create current and next 2 levels.
         if (Levels.Count-1 >= CurrentLevel + 1)
@@ -40,6 +38,7 @@ public class LevelManager : MonoBehaviour
             CreatedLevels.Add(Instantiate(Levels[CurrentLevel], startingPoint, Quaternion.Euler(0, -90, 0)));
         }
 
+        player.transform.position = CreatedLevels[CurrentLevel].transform.Find("PlayerDropZone").transform.position; 
 
     }
 

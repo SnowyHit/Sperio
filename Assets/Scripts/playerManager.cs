@@ -15,6 +15,8 @@ public class PlayerManager : MonoBehaviour
 
     //get a player prefab here for skins
     public CinemachineVirtualCamera vCam;
+
+    [SerializeField] float cameraTurnSpeed;
     public CinemachineOrbitalTransposer orbitalCam;
     public GameObject PlayerSkin;
     public GameObject PlayerSkinPrefab;
@@ -74,10 +76,9 @@ public class PlayerManager : MonoBehaviour
             {
                 if (varJoystick.Horizontal != 0 || varJoystick.Vertical != 0)
                 {
-                    orbitalCam.m_XAxis.m_InputAxisValue = varJoystick.Horizontal;
+                    orbitalCam.m_XAxis.m_InputAxisValue = varJoystick.Horizontal * cameraTurnSpeed;
                     //joystick inputs to direction vector   
                     Vector3 direction = new Vector3(varJoystick.Horizontal, 0f, varJoystick.Vertical);
-                    Debug.Log(transform.forward * varJoystick.Horizontal + " / " + transform.localPosition.z + varJoystick.Vertical);
                     //Set Rotation
                     float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
                     transform.DORotate(new Vector3(0f, targetAngle, 0f), 0.1f);
