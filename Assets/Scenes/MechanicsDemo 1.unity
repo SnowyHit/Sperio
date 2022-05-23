@@ -760,7 +760,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 4.27, z: -8.78}
+  m_FollowOffset: {x: 0, y: 5.25, z: -9.7}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -815,6 +815,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a929e3f4f83e9140a792c97c4b4360d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &979498644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543662616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c592433c4f48144eaba3e6263d49994, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &979498645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543662616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c48ff1e909e55c4f9d77d6dbe4d7e39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1042063832
@@ -1057,7 +1081,7 @@ GameObject:
   - component: {fileID: 1119994398}
   - component: {fileID: 1119994397}
   m_Layer: 0
-  m_Name: CM vcam1
+  m_Name: FreeCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1108,8 +1132,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1119994396}
-  m_LocalRotation: {x: 0.22090526, y: 0.17130819, z: -0.039447535, w: 0.9593218}
-  m_LocalPosition: {x: 3.5811744, y: 9.27, z: -6.15635}
+  m_LocalRotation: {x: 0.24168633, y: 0.17041104, z: -0.04315843, w: 0.95429826}
+  m_LocalPosition: {x: 3.2627566, y: 10.25, z: -7.0194893}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1946,8 +1970,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2064845231}
-  m_LocalRotation: {x: 0.22090526, y: 0.17130819, z: -0.039447535, w: 0.9593218}
-  m_LocalPosition: {x: 3.5811744, y: 9.27, z: -6.15635}
+  m_LocalRotation: {x: 0.24168633, y: 0.17041104, z: -0.04315843, w: 0.95429826}
+  m_LocalPosition: {x: 3.2627566, y: 10.25, z: -7.0194893}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2065,6 +2089,10 @@ PrefabInstance:
       propertyPath: varJoystick
       value: 
       objectReference: {fileID: 1042063834}
+    - target: {fileID: 7922879868694401716, guid: 16cdb2d607662254cbe4a060bc57c332, type: 3}
+      propertyPath: cameraTurnSpeed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7922879868694401716, guid: 16cdb2d607662254cbe4a060bc57c332, type: 3}
       propertyPath: PlayerSkinPrefab
       value: 
