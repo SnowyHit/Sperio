@@ -465,27 +465,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vCam: {fileID: 0}
+  cameraTurnSpeed: 1
   orbitalCam: {fileID: 0}
   PlayerSkin: {fileID: 0}
   PlayerSkinPrefab: {fileID: 0}
   PlayerSoulGameObject: {fileID: 0}
   PlayerSoulExplosionGameObject: {fileID: 0}
-  PlayerSkill: {fileID: 11400000, guid: e8697d637f51b6c48a4d8af7381530f1, type: 2}
   PlayerRigidbody: {fileID: 7922879868694401717}
   PlayerCollider: {fileID: 7922879868694401704}
   anim: {fileID: 0}
   varJoystick: {fileID: 0}
   PlayerSpeed: 5
   BaseSpeed: 5
-  ProjectileRange: 20
-  projectileRoot: {fileID: 1610627993922924406, guid: c4f79fe3f392b704fb497b573e444869, type: 3}
-  ShootRight: {fileID: 7922879867356397014}
-  ShootMiddle: {fileID: 7922879867733253234}
-  ShootLeft: {fileID: 7922879868626886404}
-  ShootLock: 1
   MovementLock: 0
-  PlayerShootingStyle: 0
-  PlayerTrail: 6
+  PlayerTrail: 0
   PlayerSoul: 0
   Trails:
   - {fileID: 7922879867521640689}

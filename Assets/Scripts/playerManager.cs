@@ -59,14 +59,15 @@ public class playerManager : MonoBehaviour
                 if (varJoystick.Horizontal != 0 || varJoystick.Vertical != 0)
                 {
                     orbitalCam.m_XAxis.m_InputAxisValue = varJoystick.Horizontal * cameraTurnSpeed;
+
                     //joystick inputs to direction vector   
                     Vector3 direction = new Vector3(varJoystick.Horizontal, 0f, varJoystick.Vertical);
+
                     //Set Rotation
                     float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
                     transform.DORotate(new Vector3(0f, targetAngle, 0f), 0.1f);
                     Vector3 moveDir = Quaternion.Euler(0f, targetAngle , 0f) * Vector3.forward;
 
-                    
                     //Set movement
                     PlayerRigidbody.velocity = new Vector3(moveDir.x * PlayerSpeed, PlayerRigidbody.velocity.y , moveDir.z*PlayerSpeed);
 
@@ -88,6 +89,7 @@ public class playerManager : MonoBehaviour
         isDead = true;
         anim.SetTrigger("Death");
         GameObject.FindObjectOfType<GameUI>().SetState(GameState.Dead.ToString());
+        orbitalCam.m_XAxis.m_InputAxisValue = 0;
     }
 
     public void Revive()
