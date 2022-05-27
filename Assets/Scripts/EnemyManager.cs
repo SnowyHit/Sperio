@@ -9,7 +9,7 @@ public class EnemyManager : MonoBehaviour
 {
     public EnemyType Type; 
     NavMeshAgent navMeshAgent;
-    PlayerManager playerManager;
+    playerManager playerManager;
     public int ShooterRange = 10;
     public bool MovementLock = false;
     Animator enemyAnimator;
@@ -20,7 +20,7 @@ public class EnemyManager : MonoBehaviour
         enemyAnimator = transform.GetComponentInChildren<Animator>();
         enemyCapsule = GetComponent<CapsuleCollider>();
         navMeshAgent = GetComponent<NavMeshAgent>();
-        playerManager = GameObject.FindObjectOfType<PlayerManager>();
+        playerManager = GameObject.FindObjectOfType<playerManager>();
         SetType();
     }
 

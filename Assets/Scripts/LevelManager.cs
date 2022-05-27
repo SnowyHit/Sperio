@@ -16,7 +16,7 @@ public class LevelManager : MonoBehaviour
     public List<GameObject> CreatedLevels;
     Vector3 startingPoint;
     public Vector3 NextLevelOffset;
-    [SerializeField] PlayerManager tempPlayerManager;
+    [SerializeField] playerManager tempPlayerManager;
     public float MoveTime;
 
     // Start is called before the first frame update
@@ -76,7 +76,6 @@ public class LevelManager : MonoBehaviour
         tempPlayerManager.PlayerRigidbody.useGravity = false;
         tempPlayerManager.PlayerCollider.enabled = false;
         tempPlayerManager.MovementLock = true;
-        tempPlayerManager.ShootLock = true;
         tempPlayerManager.PlayerSkin.SetActive(false);
         GameObject soul = Instantiate(tempPlayerManager.PlayerSoulGameObject, player.transform.position, Quaternion.identity);
         player.transform.DOMove(new Vector3(position.x, position.y + 50, player.transform.position.z + (position.z - player.transform.position.z) / 2), TempMoveTime / 2).SetEase(Ease.OutQuad);
@@ -93,7 +92,6 @@ public class LevelManager : MonoBehaviour
         Destroy(Instantiate(tempPlayerManager.PlayerSoulExplosionGameObject, player.transform.position, Quaternion.identity, player.transform), 0.2f);
         yield return new WaitForSeconds(0.4f);
         tempPlayerManager.MovementLock = false;
-        tempPlayerManager.ShootLock = false;
         tempPlayerManager.PlayerCollider.enabled = true;
         tempPlayerManager.PlayerSkin.SetActive(true);
         tempPlayerManager.PlayerRigidbody.useGravity = true;

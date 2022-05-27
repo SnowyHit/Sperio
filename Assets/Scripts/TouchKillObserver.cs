@@ -7,6 +7,6 @@ public class TouchKillObserver : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
-            other.GetComponent<PlayerManager>().Death();
+            other.GetComponent<playerManager>().Death();
     }
 }

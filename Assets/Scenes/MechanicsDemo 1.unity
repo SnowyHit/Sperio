@@ -2062,9 +2062,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7922879868694401716, guid: 16cdb2d607662254cbe4a060bc57c332, type: 3}
+      propertyPath: PlayerTrail
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7922879868694401716, guid: 16cdb2d607662254cbe4a060bc57c332, type: 3}
       propertyPath: varJoystick
       value: 
       objectReference: {fileID: 1042063834}
+    - target: {fileID: 7922879868694401716, guid: 16cdb2d607662254cbe4a060bc57c332, type: 3}
+      propertyPath: cameraTurnSpeed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7922879868694401716, guid: 16cdb2d607662254cbe4a060bc57c332, type: 3}
       propertyPath: PlayerSkinPrefab
       value: 
